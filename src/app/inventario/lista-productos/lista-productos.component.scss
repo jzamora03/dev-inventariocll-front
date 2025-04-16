@@ -1,0 +1,39 @@
+.contenedor-tabla {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  .filtro-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+  
+  .filtro {
+    width: 300px;
+  }
+  
+  .tabla-estilo {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  mat-header-cell, mat-cell {
+    font-size: 15px;
+    padding: 12px;
+  }
+  
+  mat-chip {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  mat-paginator {
+    margin-top: 1rem;
+  }
+  
