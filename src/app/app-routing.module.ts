@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login',pathMatch: 'full'},
   { path: 'inventario', loadChildren: () => import('./inventario/inventario.module').then(m => m.InventarioModule) },
   { path: 'movimientos', loadChildren: () => import('./movimientos/movimientos.module').then(m => m.MovimientosModule) },
+  { path: 'movimientos/:id', loadChildren: () =>import('./movimientos/movimientos.module').then(m => m.MovimientosModule)}
 
 ];
 
