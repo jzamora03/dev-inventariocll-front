@@ -1,12 +1,23 @@
-<div class="login-container">
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <h2>Iniciar Sesión</h2>
-      
-      <input formControlName="username" placeholder="Usuario" type="text" />
-      <input formControlName="password" placeholder="Contraseña" type="password" />
-      
-      <button type="submit">Entrar</button>
-  
-      <p *ngIf="error" class="error">{{ error }}</p>
+      <h3 class="text-center mb-4">Iniciar Sesión</h3>
+
+      <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input formControlName="username" type="text" class="form-control" placeholder="Ingrese su usuario" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input formControlName="password" type="password" class="form-control" placeholder="Ingrese su contraseña" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Entrar</button>
+
+      <div *ngIf="error" class="alert alert-danger mt-3 text-center" role="alert">
+        {{ error }}
+      </div>
     </form>
   </div>
+</div>

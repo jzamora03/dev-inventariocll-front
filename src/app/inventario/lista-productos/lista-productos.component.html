@@ -1,6 +1,6 @@
 <div class="container py-4">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 rounded mb-4">
-    <span class="navbar-brand fw-bold"><i class="bi bi-box-seam-fill me-2"></i>Inventario CLL</span>
+    <span class="navbar-brand fw-bold"><i class="bi bi-box-seam-fill me-2"></i>Inventario CCL</span>
     <div class="ms-auto d-flex align-items-center gap-3">
       <span class="text-white fw-light">Bienvenido | <b>Panel Inventario</b></span>
       <button class="btn btn-sm btn-outline-light" (click)="logout()">
@@ -8,6 +8,11 @@
       </button>
     </div>
   </nav>
+
+  <div *ngIf="alertaVisible" class="alert alert-{{ alertaTipo }} alert-dismissible fade show mt-3 mx-3" role="alert">
+    {{ alertaMensaje }}
+    <button type="button" class="btn-close" (click)="cerrarAlerta()" aria-label="Close"></button>
+  </div>
 
   <div class="row text-center mb-4">
     <div class="col-md-4">
@@ -52,6 +57,9 @@
         (input)="aplicarFiltro($event)"
       />
     </div>
+    <button class="btn btn-success" (click)="abrirModalNuevoProducto()">
+      <i class="bi bi-plus-lg"></i> Agregar
+    </button>
   </div>
 
   <!-- <tr *ngFor="let producto of dataSource.filteredData">
@@ -91,10 +99,10 @@
             <button class="btn btn-sm btn-warning me-1" (click)="abrirModalMovimiento(producto)">
               <i class="bi bi-box-arrow-in-down"></i>
             </button>
-            <button class="btn btn-sm btn-success me-1">
+            <button class="btn btn-sm btn-success me-1" (click)="abrirModalEditar(producto)">
               <i class="bi bi-pencil"></i>
             </button>
-            <button class="btn btn-sm btn-danger">
+            <button class="btn btn-sm btn-danger me-1" (click)="eliminarProducto(producto.id)">
               <i class="bi bi-trash"></i>
             </button>
           </td>
@@ -107,8 +115,63 @@
     [pageSizeOptions]="[5, 10, 25]"
     showFirstLastButtons
   ></mat-paginator>
-
-  
 </div>
 
+
+<!---- INICIO MODALs - ---->
 <app-registro-movimiento #registroMovimiento></app-registro-movimiento>
+
+<div class="modal fade" id="modalNuevoProducto" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form (ngSubmit)="registrarNuevoProducto()">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title">Agregar nuevo producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre del producto</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoProducto.nombre" name="nombre" required />
+          </div>
+          <div class="mb-3">
+            <label for="cantidad" class="form-label">Cantidad inicial</label>
+            <input type="number" class="form-control" id="cantidad" [(ngModel)]="nuevoProducto.cantidad" name="cantidad" required min="0" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Registrar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal editar producto -->
+<div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form (ngSubmit)="actualizarProducto()">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title">Editar producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombreEditar" class="form-label">Nombre del producto</label>
+            <input type="text" class="form-control" id="nombreEditar" [(ngModel)]="productoEditar.nombre" name="nombreEditar" required />
+          </div>
+          <div class="mb-3">
+            <label for="cantidadEditar" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" id="cantidadEditar" [(ngModel)]="productoEditar.cantidad" name="cantidadEditar" required min="0" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Actualizar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

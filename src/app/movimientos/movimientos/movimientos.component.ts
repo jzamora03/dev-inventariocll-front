@@ -21,13 +21,20 @@ export class MovimientosComponent implements OnInit {
 
   constructor(private movimientosService: MovimientosService, private route: ActivatedRoute, private router: Router) {}
 
+  totalEntradas: number = 0;
+  totalSalidas: number = 0;
+
   ngOnInit(): void {
     const productoId = this.route.snapshot.paramMap.get('id');
+  
     if (productoId) {
       this.movimientosService.obtenerMovimientosPorProducto(+productoId).subscribe({
         next: data => {
           this.dataSource.data = data;
-  
+
+          this.totalEntradas = data.filter(m => m.tipo === 'Entrada').length;
+          this.totalSalidas = data.filter(m => m.tipo === 'Salida').length;
+
           setTimeout(() => {
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;

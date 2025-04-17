@@ -28,6 +28,11 @@ export class ListaProductosComponent implements OnInit {
   productosBajoStock: number = 0;
   ultimoProducto: string = '-';
 
+  alertaVisible: boolean = false;
+  alertaMensaje: string = '';
+  alertaTipo: 'success' | 'danger' | 'warning' = 'success';
+
+  productoEditar = { id: 0, nombre: '', cantidad: 0 };
 
   ngOnInit(): void {
     this.inventarioService.obtenerProductos().subscribe(productos => {
@@ -42,6 +47,49 @@ export class ListaProductosComponent implements OnInit {
       const ultimo = [...ordenadosPorIdAsc].sort((a, b) => b.id - a.id)[0];
       this.ultimoProducto = ultimo ? ultimo.nombre : '-';
     });
+  }
+
+  eliminarProducto(id: number): void {
+    if (!confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+      return;
+    }
+  
+    this.inventarioService.eliminarProducto(id).subscribe({
+      next: (res) => {
+       // alert('Producto eliminado correctamente.');
+        this.mostrarAlerta('Producto eliminado correctamente.', 'success');
+        this.refrescarLista();
+      },
+      error: (err) => { 
+        this.mostrarAlerta((err.error?.mensaje), 'danger');
+       //alert('Error al eliminar: ' + (err.error?.mensaje));
+       
+      }
+    });
+  }
+  
+  refrescarLista(): void {
+    this.inventarioService.obtenerProductos().subscribe(productos => {
+      const ordenados = [...productos].sort((a, b) => a.id - b.id);
+      this.dataSource.data = ordenados;
+      this.productosTotales = ordenados.length;
+      this.productosBajoStock = ordenados.filter(p => p.cantidad < 10).length;
+      this.ultimoProducto = ordenados.length ? ordenados[ordenados.length - 1].nombre : '-';
+    });
+  }
+
+  mostrarAlerta(mensaje: string, tipo: 'success' | 'danger' | 'warning' = 'success'): void {
+    this.alertaMensaje = mensaje;
+    this.alertaTipo = tipo;
+    this.alertaVisible = true;
+  
+    setTimeout(() => {
+      this.alertaVisible = false;
+    }, 4000);
+  }
+  
+  cerrarAlerta(): void {
+    this.alertaVisible = false;
   }
   
   
@@ -67,6 +115,47 @@ export class ListaProductosComponent implements OnInit {
   }
 
   /*******Logica modal*********/ 
+
+  nuevoProducto = {
+    nombre: '',
+    cantidad: 0
+  };
+
+  abrirModalNuevoProducto(): void {
+    this.nuevoProducto = { nombre: '', cantidad: 0 };
+    bootstrap.Modal.getOrCreateInstance(document.getElementById('modalNuevoProducto')).show();
+  }
+
+  registrarNuevoProducto(): void {
+    this.inventarioService.agregarProducto(this.nuevoProducto).subscribe({
+      next: () => {
+        bootstrap.Modal.getInstance(document.getElementById('modalNuevoProducto'))?.hide();
+        this.ngOnInit();
+      },
+      error: err => {
+        alert((err.error?.mensaje || 'Error al registrar producto.'));
+      }
+    });
+  }
+
+  abrirModalEditar(producto: any): void {
+    this.productoEditar = { ...producto };
+    const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalEditarProducto'));
+    modal.show();
+  }
+  
+  actualizarProducto(): void {
+    this.inventarioService.actualizarProducto(this.productoEditar).subscribe({
+      next: res => {
+        this.mostrarAlerta('Producto actualizado correctamente', 'success');
+        bootstrap.Modal.getInstance(document.getElementById('modalEditarProducto')).hide();
+        this.refrescarLista();
+      },
+      error: err => {
+        this.mostrarAlerta((err.error?.mensaje), 'danger');
+      }
+    });
+  }
 
   @ViewChild('registroMovimiento') registroMovimientoComponent!: RegistroMovimientoComponent;
 
