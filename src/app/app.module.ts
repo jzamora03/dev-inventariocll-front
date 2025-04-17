@@ -10,6 +10,7 @@ import { MovimientosModule } from './movimientos/movimientos.module';
 import { ProductosModule } from './productos/productos.module';
 import { AuthModule } from './auth/auth.module';
 import { ListaProductosComponent } from './inventario/lista-productos/lista-productos.component';
+import { MaterialModule } from './../app/shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ListaProductosComponent } from './inventario/lista-productos/lista-prod
     AppRoutingModule,
     MovimientosModule,
     ProductosModule,
-    AuthModule
+    AuthModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

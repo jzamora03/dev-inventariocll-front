@@ -17,4 +17,10 @@ export class MovimientosService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any[]>(`${this.apiUrl}/historial-movimientos-producto/${id}`, { headers });
   }
+
+  registrarMovimiento(dto: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.apiUrl}/registrar-movimiento-producto`, dto, { headers });
+  }
 }

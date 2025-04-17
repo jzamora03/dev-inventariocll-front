@@ -1,1 +1,25 @@
-<p>registro-movimiento works!</p>
+
+<div class="modal fade" id="modalMovimiento" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form (ngSubmit)="registrar()">
+          <div class="modal-header bg-dark text-white">
+            <h5 class="modal-title">Registrar Movimiento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <p><b>Producto:</b> {{ producto?.nombre }}</p>
+            <div class="mb-3">
+              <label for="cantidad" class="form-label">Cantidad</label>
+              <input type="number" [(ngModel)]="cantidad" name="cantidad" class="form-control" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" type="submit">Registrar</button>
+            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -3,23 +3,21 @@ import { CommonModule } from '@angular/common';
 import { RegistroMovimientoComponent } from './registro-movimiento/registro-movimiento.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { MovimientosRoutingModule } from './movimientos-routing.module';
-import { MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { MaterialModule } from '../shared/material/material.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    RegistroMovimientoComponent,
+    //RegistroMovimientoComponent,
     MovimientosComponent
   ],
   imports: [
     CommonModule,
     MovimientosRoutingModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatIconModule
+    MaterialModule,
+    FormsModule
+
   ]
 })
 export class MovimientosModule { }

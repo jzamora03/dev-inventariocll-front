@@ -1,26 +1,47 @@
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-card class="custom-card">
+  <div class="top-bar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Buscar movimiento</mat-label>
+      <input matInput (keyup)="aplicarFiltro($event)" placeholder="Producto, tipo...">
+      <button mat-icon-button matSuffix>
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
 
+    <button mat-flat-button color="accent" class="volver-btn" (click)="volver()">
+      <mat-icon>arrow_back</mat-icon> Volver
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 table-styled">
     <ng-container matColumnDef="producto">
-      <mat-header-cell *matHeaderCellDef> Producto </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.producto }} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PRODUCTO</th>
+      <td mat-cell *matCellDef="let movimiento">{{ movimiento.producto }}</td>
     </ng-container>
-  
+
     <ng-container matColumnDef="tipo">
-      <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.tipo }} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>TIPO</th>
+      <td mat-cell *matCellDef="let movimiento">
+        <mat-chip [color]="movimiento.tipo === 'Entrada' ? 'primary' : 'warn'" selected>
+          {{ movimiento.tipo }}
+        </mat-chip>
+      </td>
     </ng-container>
-  
+
     <ng-container matColumnDef="cantidad">
-      <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.cantidad }} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>CANTIDAD</th>
+      <td mat-cell *matCellDef="let movimiento">{{ movimiento.cantidad }}</td>
     </ng-container>
-  
+
     <ng-container matColumnDef="fecha">
-      <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.fecha | date:'short' }} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>FECHA</th>
+      <td mat-cell *matCellDef="let movimiento">{{ movimiento.fecha | date: 'medium' }}</td>
     </ng-container>
-  
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  
-  </mat-table>
+
+    <!-- Filas -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>
