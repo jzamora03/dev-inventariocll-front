@@ -19,6 +19,8 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado:
 
 - **Node.js (v18 o superior)**  
   [Descargar Node.js](https://nodejs.org/)
+- **Angular (v19 o superior)**  
+  npm install -g @angular/cli
  
 ---
 
