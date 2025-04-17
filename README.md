@@ -23,7 +23,7 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado:
 ---
 ## **Configuración Inicial**
 1. Descargar o clonar el repositorio
-   
+
     ```bash
    git clone https://github.com/jzamora03/dev-inventariocll-front.git
    cd dev-inventariocll-front
