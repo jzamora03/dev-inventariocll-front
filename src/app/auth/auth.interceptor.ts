@@ -29,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          alert('⚠️ Debes iniciar sesión para continuar.');
+          alert('Debes iniciar sesión para continuar.');
           localStorage.removeItem('token');
           this.router.navigate(['/login']);
         }
