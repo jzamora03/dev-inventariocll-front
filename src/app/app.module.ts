@@ -11,6 +11,8 @@ import { ProductosModule } from './productos/productos.module';
 import { AuthModule } from './auth/auth.module';
 import { ListaProductosComponent } from './inventario/lista-productos/lista-productos.component';
 import { MaterialModule } from './../app/shared/material/material.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,13 @@ import { MaterialModule } from './../app/shared/material/material.module';
     AuthModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
