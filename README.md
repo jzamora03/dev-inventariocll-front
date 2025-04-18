@@ -51,3 +51,10 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado:
    http://localhost:4200/
     ```
 
+5. En login usar datos quemados como
+   
+    ```bash
+    Usuario: adminprueba
+    conraseña: 321
+    ```
+
