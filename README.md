@@ -24,9 +24,6 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado:
  
 ---
 
-  > [!IMPORTANT]
-  > Verificar que los servicios esten con el puerto que viene del back, podria ser el 500
-
   > [!NOTE]
   > En el proyecto se encuentran unos archivos **enviroment**, el que dice `enviroment.ts` se debe agregar el puerto del backend
 
