@@ -126,14 +126,30 @@ export class ListaProductosComponent implements OnInit {
     bootstrap.Modal.getOrCreateInstance(document.getElementById('modalNuevoProducto')).show();
   }
 
+  normalizarNombre(nombre: string): string {
+    return nombre.trim().toLowerCase().replace(/\s+/g, ' ');
+  }
+
   registrarNuevoProducto(): void {
+    const nombreNuevo = this.normalizarNombre(this.nuevoProducto.nombre);
+  
+    const yaExiste = this.dataSource.data.some(p =>
+      this.normalizarNombre(p.nombre) === nombreNuevo
+    );
+  
+    if (yaExiste) {
+      this.mostrarAlerta('Ya existe un producto con ese nombre.', 'danger');
+      return;
+    }
+  
     this.inventarioService.agregarProducto(this.nuevoProducto).subscribe({
       next: () => {
         bootstrap.Modal.getInstance(document.getElementById('modalNuevoProducto'))?.hide();
         this.ngOnInit();
+        this.mostrarAlerta('Producto registrado correctamente.', 'success');
       },
       error: err => {
-        alert((err.error?.mensaje || 'Error al registrar producto.'));
+        this.mostrarAlerta((err.error?.mensaje || 'Error al registrar producto.'), 'danger');
       }
     });
   }

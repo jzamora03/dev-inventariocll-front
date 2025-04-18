@@ -14,11 +14,11 @@ export interface Producto {
 })
 
 export class ProductosService {
-  private apiUrl = 'http://localhost:5000/productos';
+  // private apiUrl = 'http://localhost:5000/productos';
 
-  constructor(private http: HttpClient) {}
+  // constructor(private http: HttpClient) {}
 
-  obtenerProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.apiUrl);
-  }
+  // obtenerProductos(): Observable<Producto[]> {
+  //   return this.http.get<Producto[]>(this.apiUrl);
+  // }
 }
