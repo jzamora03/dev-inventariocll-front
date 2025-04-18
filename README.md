@@ -1,64 +1,53 @@
-<<<<<<< HEAD
-# dev-inventariocll-front
-Front inventario CLL
-=======
-# DevInventariocclFront
+### Inventario CCL - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+Este proyecto es la interfaz web del sistema de gestión de inventario desarrollado para la empresa **CCL**. Permite a los usuarios autenticados consultar productos, registrar movimientos de entrada y salida, y visualizar el historial de movimientos.
 
-## Development server
+---
 
-To start a local development server, run:
+### Tecnologías utilizadas
 
-```bash
-ng serve
-```
+- [Angular 19](https://angular.io/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- [RxJS](https://rxjs.dev/)
+- Consumo de API REST con autenticación JWT
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+### Requisitos previos
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Antes de comenzar, asegúrate de tener lo siguiente instalado:
 
-```bash
-ng generate component component-name
-```
+- **Node.js (v18 o superior)**  
+  [Descargar Node.js](https://nodejs.org/)
+- **Angular (v19 o superior)**  
+  npm install -g @angular/cli
+ 
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+  > [!IMPORTANT]
+  > Verificar que los servicios esten con el puerto que viene del back, podria ser el 500
 
-```bash
-ng generate --help
-```
+  > [!NOTE]
+  > En el proyecto se encuentran unos archivos **enviroment**, el que dice `enviroment.ts` se debe agregar el puerto del backend
 
-## Building
+### **Configuración Inicial**
+1. Descargar o clonar el repositorio
 
-To build the project run:
+    ```bash
+   git clone https://github.com/jzamora03/dev-inventariocll-front.git
+   cd dev-inventariocll-front
+    # Si deseas abrir el codigo desde el cmd con Visual Studio code usa
+    code .
+3. Instalar dependencias y levantar el servidor
+      ```bash
+     npm install
+      ```
+4. Levantar el front
+    ```bash
+   ng serve
+    ```
+5. Luego de cargue todo en nuestro navegador
+    ```bash
+   http://localhost:4200/
+    ```
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
->>>>>>> 8ca42cb (initial commit)
