@@ -25,7 +25,7 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado:
 ---
 
   > [!NOTE]
-  > En el proyecto se encuentran unos archivos **enviroment**, el que dice `enviroment.ts` se debe agregar el puerto del backend
+  > En el proyecto se encuentran unos archivos **enviroment**, el que dice `src/environments/environment.ts` se debe agregar el puerto en el cual se esta levantado el backend.
 
 ### **Configuración Inicial**
 1. Descargar o clonar el repositorio
