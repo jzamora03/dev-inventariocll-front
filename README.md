@@ -29,21 +29,24 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado:
 
 ### **Configuración Inicial**
 1. Descargar o clonar el repositorio
-
+   
     ```bash
    git clone https://github.com/jzamora03/dev-inventariocll-front.git
    cd dev-inventariocll-front
     # Si deseas abrir el codigo desde el cmd con Visual Studio code usa
     code .
-3. Instalar dependencias y levantar el servidor
+2. Instalar dependencias (presionar `CONTROL + SHIFT + Ñ` para abrir la consola, y verificar que no este en power shell, si no command prompt)
+   
       ```bash
      npm install
       ```
-4. Levantar el front
+3. Levantar el front
+   
     ```bash
    ng serve
     ```
-5. Luego de cargue todo en nuestro navegador
+4. Luego de cargue todo en nuestro navegador
+   
     ```bash
    http://localhost:4200/
     ```
